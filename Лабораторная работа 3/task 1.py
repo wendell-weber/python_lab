@@ -19,10 +19,9 @@ class Book:
         return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r})"
 
 
-class PaperBook:
+class PaperBook(Book):
     def __init__(self, name: str, author: str, pages: int):
-        self.name = name
-        self.author = author
+        super().__init__(name, author)
         self.pages = pages
 
     @property
@@ -35,15 +34,13 @@ class PaperBook:
             self.pages = value
         else:
             raise ValueError("Pages must be a positive integer")
-    def __str__(self):
-        return f"Книга {self.name}. Автор {self.author}"
+
     def __repr__(self):
         return f"PaperBook('{self.name}', '{self.author}', {self.pages})"
 
-class AudioBook:
+class AudioBook(Book):
     def __init__(self, name: str, author: str, duration: float):
-        self.name = name
-        self.author = author
+        super().__init__(name, author)
         self.duration = duration
 
     @property
@@ -56,7 +53,6 @@ class AudioBook:
             self.duration = value
         else:
             raise ValueError("Duration must be a positive float")
-    def __str__(self):
-        return f"Книга {self.name}. Автор {self.author}"
+
     def __repr__(self):
         return f"AudioBook('{self.name}', '{self.author}', {self.duration})"
